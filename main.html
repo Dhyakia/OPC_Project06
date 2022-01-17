@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <title>JustStreamIt!</title>
         <link href="style.css" rel="stylesheet">
+        
     </head>
 
     <body>
@@ -27,19 +28,19 @@
 
         </header>
 
-        <div class="top_movie_box">
+        <div class="top-movie-box">
             <!-- This div is for: Best movie of all time, by IMDB score -->
 
-            <div class="top_movie_infos">
+            <div class="top-movie-infos">
                 <p>Titre de la vidéo</p>
                 <button>Play</button>
             </div>
             
-            <div class="top_movie_img"> 
-                <img src="https://picsum.photos/400/200">
+            <div class="top-movie-img"> 
+                <img src="https://picsum.photos/400/200" class="image-target">
             </div>
 
-            <div class="top_movie_description">
+            <div class="top-movie-description">
                 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
@@ -50,21 +51,21 @@
             </div>
         </div>
 
-        <div class="top_movies_box">
+        <div class="top-movies-box">
             <!-- This div is for: 2nd to 8th top movie of all time, by IMDB score -->
             <h2>Films les mieux notés</h2>
             <div>
-                <img src="https://picsum.photos/200/200">
-                <img src="https://picsum.photos/200/200">
-                <img src="https://picsum.photos/200/200">
-                <img src="https://picsum.photos/200/200">
-                <img src="https://picsum.photos/200/200">
-                <img src="https://picsum.photos/200/200">
-                <img src="https://picsum.photos/200/200">
+                <img src="https://picsum.photos/200/200" class="image-target">
+                <img src="https://picsum.photos/200/200" class="image-target">
+                <img src="https://picsum.photos/200/200" class="image-target">
+                <img src="https://picsum.photos/200/200" class="image-target">
+                <img src="https://picsum.photos/200/200" class="image-target">
+                <img src="https://picsum.photos/200/200" class="image-target">
+                <img src="https://picsum.photos/200/200" class="image-target">
             </div>
         </div>
 
-        <div class="top_movies_box">
+        <div class="top-movies-box">
             <!-- 
                 This div is for: 7 top movie of all time, within the 'CRIME' 
                 categorie, by IMDB score 
@@ -81,12 +82,12 @@
             </div>
         </div>
 
-        <div class="top_movies_box">
+        <div class="top-movies-box">
             <!-- 
                 This div is for: 7 top movie of all time, within the 'HORROR' 
                 categorie, by IMDB score 
             -->
-            <h2>Horror 2</h2>
+            <h2>Horror</h2>
             <div >
                 <img src="https://picsum.photos/200/200">
                 <img src="https://picsum.photos/200/200">
@@ -98,7 +99,7 @@
             </div>
         </div>
 
-        <div class="top_movies_box">
+        <div class="top-movies-box">
             <!-- This div is for: 7 top movie of all time, within the 'WESTERN' 
                 categorie, by IMDB score -->
             <h2>Western</h2>
@@ -112,5 +113,31 @@
                 <img src="https://picsum.photos/200/200">
             </div>
         </div>
+
+        <!-- Modal div -->
+        <div id="modal-window" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <p>
+                    Information que la modale doit afficher :
+                    - L'image de la pochette
+                    - Titre
+                    - Genre COMPLET
+                    - Date de sortie
+                    - Rated
+                    - Score IMDB
+                    - Réalisateur
+                    - Liste des acteurs
+                    - Durée
+                    - Pays d'origine
+                    - Résultat box office
+                    - Résumé du film
+                </p>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="scripts.js"></script>
     </body>
 </html>
