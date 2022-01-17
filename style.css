@@ -1,0 +1,106 @@
+/*  
+- Ajouter la police
+- La navbar en blanc, sans les underlines
+- 
+*/
+
+body {
+    background-color: whitesmoke;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Top banner */
+
+header {
+    background-color: rgba(65, 74, 78, 0.815);
+    color: white;
+}
+
+/* Logo */
+h1 {
+    display: inline-block;
+    margin-left: 3%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* Navbar */
+.navbar {
+    display: inline-block;
+    margin-left: 250px;
+}
+
+.navbar ul li {
+    display: inline;
+    padding-right: 24px;
+    list-style-type: none;
+    font-size: large;
+}
+
+.navbar ul li a:visited, .navbar ul li a:link, .navbar ul li a:active {
+    text-decoration: none;
+    color: white;
+}
+
+/* Top movie block */
+
+.top_movie_box {
+    padding-top: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 4px black solid;
+
+}
+
+/* Top movie infos: Title + Play button + Description */
+
+/* Dans le cas ou les images seront bien plus hautes que large,
+faire passer le texte de la description sous le boutton "PLAY". 
+Il faudra faire remonter le bloc .top_movie_infos quasiment tout en haut.
+A TESTER 
+*/
+
+.top_movie_infos {
+    display: inline-block;
+    vertical-align: 40px;
+    margin-left: 10%;
+    text-align: center;
+}
+
+.top_movie_infos p {
+    font-weight: bold;
+}
+
+.top_movie_infos button {
+    padding: 2px 20px 2px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50px;
+}
+
+/* Top movie poster image */
+.top_movie_img {
+    display: inline-block;
+    margin-left: 20%;
+}
+
+/* Top movie description */
+.top_movie_description {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+/* Top rated movies block */
+
+.top_movies_box {
+    text-align: center;
+    margin-top: 60px;
+}
+
+/* Top rated movies title */
+h2 {
+    margin-bottom: 20px;
+}
