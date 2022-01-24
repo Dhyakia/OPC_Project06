@@ -2,29 +2,22 @@
 const genreAPI = 'http://localhost:8000/api/v1/genres/'
 const titleAPI = 'http://localhost:8000/api/v1/titles/'
 
-//Slick initializer
-$(document).ready(function(){
-    $('.slick-test').slick({
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3
-      });
-});
-    
-    
-
 // Modal window variables
 var modal = document.getElementById("myModal");
-var btn = document.getElementsByClassName("myBtn")[0];
-var span = document.getElementById("close");
+var modalX = document.getElementById("closeModal");
+
+
+// Next function will take an argument latter.
+// Using "(this)" maybe ? or the id ?
+// Anyway, i need something to identify what image has been clicked.
 
 // Modal window trigger
-btn.onclick = function() {
+function modalTrigger() {
     modal.style.display = "block";
 }
 
 // Modal window exit #1
-span.onclick = function() {
+modalX.onclick = function() {
     modal.style.display = "none";
 }
 
@@ -34,3 +27,13 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+// Slick :[show 4, slide 1 by 1, with arrows & infinite loop]
+$(document).ready(function() {
+    $('.slick-slider').slick({
+        arrows: true,
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1
+    });
+});

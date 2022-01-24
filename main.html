@@ -5,15 +5,17 @@
     <head>
         <meta charset="utf-8">
         <title>JustStreamIt!</title>
-        <link rel="stylesheet" type="text/css" href="CSS/style.css"/>
-        <link rel="stylesheet" type="text/css" href="CSS/slick.css"/>
-        <link rel="stylesheet" type="text/css" href="CSS/slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="css/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
     </head>
 
     <body>
+
+        <!-- Top banner -->
         <header>
-            <!-- Title + Navbar (Accueil + Catégories)-->
             <h1>JustStreamIt</h1>
+            <!-- NavBar -->
             <nav class="navbar">
                 <ul class="nav-list">
                     <li class="nav-item">
@@ -26,14 +28,14 @@
             </nav>
         </header>
 
+        <!-- This div is for: Best movie of all time, by IMDB score -->
         <div class="top-movie-box">
-            <!-- This div is for: Best movie of all time, by IMDB score -->
             <div class="top-movie-infos">
                 <p>Titre de la vidéo</p>
                 <button>Play</button>
             </div> 
             <div class="top-movie-img"> 
-                <img class="myBtn" id="img01" src="https://picsum.photos/400/200">
+                <img class="moviePoster" id="img01" src="https://picsum.photos/400/200"  onclick=modalTrigger()>
             </div>
             <div class="top-movie-description">
                 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
@@ -49,64 +51,64 @@
         <!-- This div is for: 2nd to 8th top movie of all time, by IMDB score -->
         <div class="top-movies-box">   
             <h2>Films les mieux notés</h2>
-            <div class="slick-test">
-                <img class="myBtn" src="https://picsum.photos/200/200">
-                <img class="myBtn" src="https://picsum.photos/200/200">
-                <img class="myBtn" src="https://picsum.photos/200/200">
-                <img class="myBtn" src="https://picsum.photos/200/200">
-                <img class="myBtn" src="https://picsum.photos/200/200">
-                <img class="myBtn" src="https://picsum.photos/200/200">
-                <img class="myBtn" src="https://picsum.photos/200/200">
+            <div class="slick-slider">
+                <img class="moviePoster" id="img02" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img03" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img04" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img05" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img06" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img07" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img08" src="https://picsum.photos/200/200" onclick=modalTrigger()>
             </div>          
         </div>
 
         <!-- 7 top movie of all time, within the 'CRIME' categorie, by IMDB score -->
         <div class="top-movies-box">
             <h2>Crime</h2>
-            <div>
-                <img src="">1
-                <img src="">2
-                <img src="">3
-                <img src="">4
-                <img src="">5
-                <img src="">6
-                <img src="">7
+            <div class="slick-slider">
+                <img class="moviePoster" id="img11" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img12" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img13" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img14" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img15" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img16" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img17" src="https://picsum.photos/200/200" onclick=modalTrigger()>
             </div>
         </div>
 
         <!-- 7 top movie of all time, within the 'HORROR' categorie, by IMDB score -->
         <div class="top-movies-box">
             <h2>Horror</h2>
-            <div>
-                <img src="">1
-                <img src="">2
-                <img src="">3
-                <img src="">4
-                <img src="">5
-                <img src="">6
-                <img src="">7
+            <div class="slick-slider">
+                <img class="moviePoster" id="img21" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img22" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img23" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img24" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img25" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img26" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img27" src="https://picsum.photos/200/200" onclick=modalTrigger()>
             </div>
         </div>
 
         <!-- 7 top movie of all time, within the 'WESTERN' categorie, by IMDB score -->
         <div class="top-movies-box">
             <h2>Western</h2>
-            <div >
-                <img src="">1
-                <img src="">2
-                <img src="">3
-                <img src="">4
-                <img src="">5
-                <img src="">6
-                <img src="">7
+            <div class="slick-slider">
+                <img class="moviePoster" id="img31" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img32" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img33" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img34" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img35" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img36" src="https://picsum.photos/200/200" onclick=modalTrigger()>
+                <img class="moviePoster" id="img37" src="https://picsum.photos/200/200" onclick=modalTrigger()>
             </div>
         </div>
 
-        <!-- The Modal -->
+        <!-- Modal Window -->
         <div id="myModal" class="modal">
             <!-- Modal content -->
-            <div class="modal-content">
-                <span id="close">&times;</span>
+            <div class="modalContent">
+                <span id="closeModal">&times;</span>
                 <p>L’image de la pochette du film</p>
                 <p>Le Titre du film</p>
                 <p>Le genre complet du film</p>
@@ -123,8 +125,9 @@
         </div>
 
         <!-- Local script, JQUERY and SLICK -->
-        <script type="text/javascript" src="JS/scripts.js"></script>
-        <script type="text/javascript" src="JS/jquery.min.js"></script>
-        <script type="text/javascript" src="JS/slick.min.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/slick.min.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+
     </body>
 </html>

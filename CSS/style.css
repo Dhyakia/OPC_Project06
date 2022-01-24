@@ -1,9 +1,16 @@
-/* Global */
+/* Global(s) */
 body {
     background-color: whitesmoke;
     margin-left: 25%;
     margin-right: 25%;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+img {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
 img:hover {
@@ -15,7 +22,6 @@ header {
     background-color: rgba(65, 74, 78, 0.815);
     color: white;
 }
-
 h1 {
     display: inline-block;
     margin-left: 3%;
@@ -23,18 +29,17 @@ h1 {
     padding-bottom: 12px;
 }
 
+/* NavBar */
 .navbar {
     display: inline-block;
     margin-left: 250px;
 }
-
 .navbar ul li {
     display: inline;
     padding-right: 24px;
     list-style-type: none;
     font-size: large;
 }
-
 .navbar ul li a:visited, 
 .navbar ul li a:link, 
 .navbar ul li a:active {
@@ -48,32 +53,25 @@ h1 {
     margin-top: 40px;
     margin-bottom: 40px;
     border: 4px black solid;
-
 }
-
-/* 
-Dans le cas ou les images seront bien plus hautes que large,
-faire passer le texte de la description sous le boutton "PLAY". 
-Il faudra faire remonter le bloc .top_movie_infos quasiment tout en haut.
-*/
-
 .top-movie-infos {
     display: inline-block;
-    vertical-align: 40px;
+    vertical-align: 80px;
     margin-left: 10%;
     text-align: center;
 }
-
 .top-movie-infos p {
     font-weight: bold;
 }
-
 .top-movie-infos button {
     padding: 2px 20px 2px 20px;
     background-color: red;
     color: white;
     border: none;
     border-radius: 50px;
+}
+.top-movie-box img {
+    display: block;
 }
 
 /* Top movie poster image */
@@ -90,13 +88,8 @@ Il faudra faire remonter le bloc .top_movie_infos quasiment tout en haut.
 
 /* Top rated movies block */
 .top-movies-box {
-    border: 2px solid black;
     text-align: center;
     margin-top: 60px;
-}
-
-.slick-test {
-    border: 2px solid red;
 }
 
 h2 {
@@ -116,8 +109,7 @@ h2 {
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
-
-.modal-content {
+.modalContent {
     border: 2px solid black;
     background-color: #fefefe;
     text-align: left;
@@ -127,14 +119,13 @@ h2 {
 }
 
 /* Exit cross out of modal window */
-#close {
+#closeModal {
     float: right;
     font-size: 24px;
     padding: 0 2px 0 2px;
     font-weight: bold;
 }
-
-#close:hover, #close:focus {
+#closeModal:hover, #closeModal:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
