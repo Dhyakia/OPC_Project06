@@ -5,17 +5,15 @@
     <head>
         <meta charset="utf-8">
         <title>JustStreamIt!</title>
-        <link href="style.css" rel="stylesheet">
-        
+        <link rel="stylesheet" type="text/css" href="CSS/style.css"/>
+        <link rel="stylesheet" type="text/css" href="CSS/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="CSS/slick-theme.css"/>
     </head>
 
     <body>
-
         <header>
-
             <!-- Title + Navbar (Accueil + Catégories)-->
             <h1>JustStreamIt</h1>
-
             <nav class="navbar">
                 <ul class="nav-list">
                     <li class="nav-item">
@@ -26,21 +24,17 @@
                     </li>
                 </ul>
             </nav>
-
         </header>
 
         <div class="top-movie-box">
             <!-- This div is for: Best movie of all time, by IMDB score -->
-
             <div class="top-movie-infos">
                 <p>Titre de la vidéo</p>
                 <button>Play</button>
-            </div>
-            
+            </div> 
             <div class="top-movie-img"> 
                 <img class="myBtn" id="img01" src="https://picsum.photos/400/200">
             </div>
-
             <div class="top-movie-description">
                 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
@@ -55,13 +49,15 @@
         <!-- This div is for: 2nd to 8th top movie of all time, by IMDB score -->
         <div class="top-movies-box">   
             <h2>Films les mieux notés</h2>
-            <img class="myBtn" src="https://picsum.photos/200/200">
-            <img class="myBtn" src="https://picsum.photos/200/200">
-            <img class="myBtn" src="https://picsum.photos/200/200">
-            <img class="myBtn" src="https://picsum.photos/200/200">
-            <img class="myBtn" src="https://picsum.photos/200/200">
-            <img class="myBtn" src="https://picsum.photos/200/200">
-            <img class="myBtn" src="https://picsum.photos/200/200">
+            <div class="slick-test">
+                <img class="myBtn" src="https://picsum.photos/200/200">
+                <img class="myBtn" src="https://picsum.photos/200/200">
+                <img class="myBtn" src="https://picsum.photos/200/200">
+                <img class="myBtn" src="https://picsum.photos/200/200">
+                <img class="myBtn" src="https://picsum.photos/200/200">
+                <img class="myBtn" src="https://picsum.photos/200/200">
+                <img class="myBtn" src="https://picsum.photos/200/200">
+            </div>          
         </div>
 
         <!-- 7 top movie of all time, within the 'CRIME' categorie, by IMDB score -->
@@ -108,7 +104,6 @@
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
-
             <!-- Modal content -->
             <div class="modal-content">
                 <span id="close">&times;</span>
@@ -127,6 +122,9 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="scripts.js"></script>
+        <!-- Local script, JQUERY and SLICK -->
+        <script type="text/javascript" src="JS/scripts.js"></script>
+        <script type="text/javascript" src="JS/jquery.min.js"></script>
+        <script type="text/javascript" src="JS/slick.min.js"></script>
     </body>
 </html>

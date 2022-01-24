@@ -1,9 +1,4 @@
-/*  
-- Ajouter la police
-- La navbar en blanc, sans les underlines
-- 
-*/
-
+/* Global */
 body {
     background-color: whitesmoke;
     margin-left: 25%;
@@ -16,7 +11,6 @@ img:hover {
 }
 
 /* Top banner */
-
 header {
     background-color: rgba(65, 74, 78, 0.815);
     color: white;
@@ -49,7 +43,6 @@ h1 {
 }
 
 /* Top movie block */
-
 .top-movie-box {
     padding-top: 40px;
     margin-top: 40px;
@@ -96,11 +89,14 @@ Il faudra faire remonter le bloc .top_movie_infos quasiment tout en haut.
 }
 
 /* Top rated movies block */
-
 .top-movies-box {
     border: 2px solid black;
     text-align: center;
     margin-top: 60px;
+}
+
+.slick-test {
+    border: 2px solid red;
 }
 
 h2 {
