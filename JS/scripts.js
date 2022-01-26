@@ -4,22 +4,38 @@ const titleAPI_url = 'http://localhost:8000/api/v1/titles/';
 // API navigation
 const ask = '?';
 const sortByScoreAsc = 'sort_by=-imdb_score&';
-const sortByGenreCrime = 'genre=crime&';
-const sortByGenreHorror = 'genre=horror&';
-const sortByGenreWestern = 'genre=western&';
+const sortByGenreCrime = 'genre_contains=crime&';
+const sortByGenreHorror = 'genre_contains=horror&';
+const sortByGenreWestern = 'genre_contains=western&';
 
 // Lists to store urls of pages
-var topMoviesOverall = [];
-var topMoviesCrime = [];
-var topMoviesHorror = [];
-var topMoviesWestern = [];
+var list_topMoviesOverall = [];
+var list_topMoviesCrime = [];
+var list_topMoviesHorror = [];
+var list_topMoviesWestern = [];
+
+// Maintenant, je veux générer les urls
+function generate_url() {
+    var url_askBestMovies = (titleAPI_url + ask + sortByScoreAsc);
+    var url_askBestCrime = (url_askBestMovies + sortByGenreCrime);
+    var url_askBestHorror = (url_askBestMovies + sortByGenreHorror);
+    var url_askBestWestern = (url_askBestMovies + sortByGenreWestern);
+
+    urlGrab(url_askBestMovies, list_topMoviesOverall);
+    urlGrab(url_askBestCrime, list_topMoviesCrime);
+    urlGrab(url_askBestHorror, list_topMoviesHorror);
+    urlGrab(url_askBestWestern, list_topMoviesWestern);
+}
 
 // Push 10 movie's complete page into a list
 async function urlGrab(url, list) {
     var response = await fetch(url);
     var data = await response.json();
 
-    while (list.length < 10) {
+    // This var change the amount of movies fetch();
+    var howManyMovies = 8;
+
+    while (list.length < howManyMovies) {
         var resultsPerPage = 5;
 
         while (resultsPerPage > 0) {
@@ -32,41 +48,25 @@ async function urlGrab(url, list) {
             }
         }
     } 
-}
 
-urlGrab(titleAPI_url, topMoviesOverall)
+    /// FOR TESTING PURPOSES ONLY ///
+    let showTest = `
+        <p>${list[0]}<p>
+        <p>${list[1]}<p>
+        <p>${list[2]}<p>
+        <p>${list[3]}<p>`
+
+    document.getElementById("test").innerHTML = showTest;
+}
 
 /////////////////////////////////////////////////// TEST: START
 
-async function getApi(url) {
-    const response = await fetch(url);
-    var data = await response.json();
-    show(data);
-}
+generate_url();
 
-function show(data) {
-    let tab = 
-    `<tr>
-        <th>id</th>
-        <th>url</th>
-        <th>title</th>
-        <th>year</th>
-    </tr>`
-
-    for (let r of data.results) {
-        tab += `<tr>
-        <th>${r.id}</th>
-        <th>${r.url}</th>
-        <th>${r.title}</th>
-        <th>${r.year}</th>
-       </tr>`;
-    }
-
-    document.getElementById("test").innerHTML = tab;
-}
-
-// Calling the function
-getApi(titleAPI_url);
+console.log(list_topMoviesOverall);
+console.log(list_topMoviesCrime);
+console.log(list_topMoviesHorror);
+console.log(list_topMoviesWestern);
 
 /////////////////////////////////////////////////// TEST: START
 
