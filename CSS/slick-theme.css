@@ -88,11 +88,11 @@
 }
 .slick-prev:before
 {
-    content: ' \2B90';
+    content: ' \2190';
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: ' \2B90';
+    content: ' \2190';
 }
 
 .slick-next
@@ -106,11 +106,11 @@
 }
 .slick-next:before
 {
-    content: ' \2B91';
+    content: ' \2192';
 }
 [dir='rtl'] .slick-next:before
 {
-    content: ' \2B91';
+    content: ' \2B92';
 }
 
 /* Dots */

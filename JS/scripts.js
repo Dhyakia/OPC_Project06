@@ -1,6 +1,21 @@
 // API URL as constants
-const genreAPI = 'http://localhost:8000/api/v1/genres/'
-const titleAPI = 'http://localhost:8000/api/v1/titles/'
+const titleAPI = 'http://localhost:8000/api/v1/titles/';
+
+// Param. setup
+const askTopScore = '?sort_by=-imdb_score';
+const askFilterCrime = '&genre_contains=Crime';
+const askFilterHorror = '&genre_contains=horror';
+const askFilterWestern = '&genre_contains=western';
+
+// Not very future-proof. Better use the link within the "next" key.
+const nextTwo = '&page=2';
+
+// Initilisation of the object's lists
+var top_movies_all = [];
+var top_movies_crime = [];
+var top_movies_horror = [];
+var top_movies_western = [];
+
 
 // Modal window variables
 var modal = document.getElementById("myModal");
