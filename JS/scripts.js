@@ -1,30 +1,50 @@
 // API URL as constants
-const titleAPI = 'http://localhost:8000/api/v1/titles/';
+const titleAPI_url = 'http://localhost:8000/api/v1/titles/';
 
-// Param. setup
-const askTopScore = '?sort_by=-imdb_score';
-const askFilterCrime = '&genre_contains=Crime';
-const askFilterHorror = '&genre_contains=horror';
-const askFilterWestern = '&genre_contains=western';
+// First, let's generate the urls
 
-// Not very future-proof. Better use the link within the "next" key.
-const nextTwo = '&page=2';
 
-// Initilisation of the object's lists
-var top_movies_all = [];
-var top_movies_crime = [];
-var top_movies_horror = [];
-var top_movies_western = [];
+/////////////////////////////////////////////////// TEST: START
 
+async function getApi(url) {
+    const response = await fetch(url);
+    console.log(response);
+
+    var data = await response.json();
+    console.log(data);
+    
+    show(data);
+}
+
+function show(data) {
+    let tab = 
+    `<tr>
+        <th>id</th>
+        <th>url</th>
+        <th>title</th>
+        <th>year</th>
+    </tr>`
+
+    for (let r of data.results) {
+        tab += `<tr>
+        <th>${r.id}</th>
+        <th>${r.url}</th>
+        <th>${r.title}</th>
+        <th>${r.year}</th>
+       </tr>`;
+    }
+
+    document.getElementById("test").innerHTML = tab;
+}
+
+// Calling the function
+getApi(titleAPI_url);
+
+/////////////////////////////////////////////////// TEST: START
 
 // Modal window variables
 var modal = document.getElementById("myModal");
 var modalX = document.getElementById("closeModal");
-
-
-// Next function will take an argument latter.
-// Using "(this)" maybe ? or the id ?
-// Anyway, i need something to identify what image has been clicked.
 
 // Modal window trigger
 function modalTrigger() {
