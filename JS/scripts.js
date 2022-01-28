@@ -8,34 +8,34 @@ const sortByGenreCrime = 'genre_contains=crime&';
 const sortByGenreHorror = 'genre_contains=horror&';
 const sortByGenreWestern = 'genre_contains=western&';
 
-// Lists to store urls of pages
-var list_topMoviesOverall = [];
-var list_topMoviesCrime = [];
-var list_topMoviesHorror = [];
-var list_topMoviesWestern = [];
+// urls arrays
+var array_topMoviesOverall = [];
+var array_topMoviesCrime = [];
+var array_topMoviesHorror = [];
+var array_topMoviesWestern = [];
 
-// Maintenant, je veux générer les urls
-function generate_url() {
-    var url_askBestMovies = (titleAPI_url + ask + sortByScoreAsc);
-    var url_askBestCrime = (url_askBestMovies + sortByGenreCrime);
-    var url_askBestHorror = (url_askBestMovies + sortByGenreHorror);
-    var url_askBestWestern = (url_askBestMovies + sortByGenreWestern);
+// Generate the urls
+async function generate_url() {
+    let url_askBestMovies = (titleAPI_url + ask + sortByScoreAsc);
+    let url_askBestCrime = (url_askBestMovies + sortByGenreCrime);
+    let url_askBestHorror = (url_askBestMovies + sortByGenreHorror);
+    let url_askBestWestern = (url_askBestMovies + sortByGenreWestern);
 
-    urlGrab(url_askBestMovies, list_topMoviesOverall);
-    urlGrab(url_askBestCrime, list_topMoviesCrime);
-    urlGrab(url_askBestHorror, list_topMoviesHorror);
-    urlGrab(url_askBestWestern, list_topMoviesWestern);
+    await urlGrab(url_askBestMovies, array_topMoviesOverall);
+    await urlGrab(url_askBestCrime, array_topMoviesCrime);
+    await urlGrab(url_askBestHorror, array_topMoviesHorror);
+    await urlGrab(url_askBestWestern, array_topMoviesWestern);
 }
 
-// Push 10 movie's complete page into a list
-async function urlGrab(url, list) {
+// Push urls into given array
+async function urlGrab(url, array) {
     var response = await fetch(url);
     var data = await response.json();
 
     // This var change the amount of movies fetch();
-    var howManyMovies = 8;
+    var howManyMovies = 10;
 
-    while (list.length < howManyMovies) {
+    while (array.length < howManyMovies) {
         var resultsPerPage = 5;
 
         while (resultsPerPage > 0) {
@@ -43,30 +43,18 @@ async function urlGrab(url, list) {
             data = await response.json();
 
             for (let x of data.results) {
-                list.push(x.url);
+                array.push(x.url);
                 resultsPerPage --;
             }
         }
-    } 
-
-    /// FOR TESTING PURPOSES ONLY ///
-    let showTest = `
-        <p>${list[0]}<p>
-        <p>${list[1]}<p>
-        <p>${list[2]}<p>
-        <p>${list[3]}<p>`
-
-    document.getElementById("test").innerHTML = showTest;
+    }
+    console.log(array)
 }
 
+generate_url();
 /////////////////////////////////////////////////// TEST: START
 
-generate_url();
-
-console.log(list_topMoviesOverall);
-console.log(list_topMoviesCrime);
-console.log(list_topMoviesHorror);
-console.log(list_topMoviesWestern);
+///
 
 /////////////////////////////////////////////////// TEST: START
 
