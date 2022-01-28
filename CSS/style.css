@@ -5,17 +5,19 @@ body {
     margin-right: 25%;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
 img {
     border: 2px solid black;
     border-radius: 5px;
     margin-left: 4px;
     margin-right: 4px;
 }
-
 img:hover {
     cursor: pointer;
 }
+
+
+
+
 
 /* Top banner */
 header {
@@ -28,6 +30,8 @@ h1 {
     padding-top: 12px;
     padding-bottom: 12px;
 }
+
+
 
 /* NavBar */
 .navbar {
@@ -47,6 +51,8 @@ h1 {
     color: whitesmoke;
 }
 
+
+
 /* Top movie block */
 .top-movie-box {
     padding-top: 40px;
@@ -54,47 +60,54 @@ h1 {
     margin-bottom: 40px;
     border: 4px black solid;
 }
-.top-movie-infos {
-    display: inline-block;
-    vertical-align: 80px;
-    margin-left: 10%;
-    text-align: center;
-}
-.top-movie-infos p {
-    font-weight: bold;
-}
-.top-movie-infos button {
-    padding: 2px 20px 2px 20px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 50px;
-}
-.top-movie-box img {
-    display: block;
-}
 
 /* Top movie poster image */
 .top-movie-img {
-    display: inline-block;
-    margin-left: 20%;
+    text-align: center;
+}
+
+/* Top movie infos */
+.top-movie-infos{
+    text-align: center;
+}
+#top-movie-title {
+    font-size: large;
+    font-weight: bold;
+}
+#top-movie-resume{
+    font-size: large;
+    padding: 4px 20px 2px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: 0.1s all;
+    border-radius: 50px;
+}
+#top-movie-resume:active{
+    transform: scale(0.95);
+    box-shadow: 2px 2px 22px 2px rgba(0,0,0,0.2);
 }
 
 /* Top movie description */
-.top-movie-description {
+#top-movie-description {
     margin-left: 24px;
     margin-right: 24px;
 }
+
+
 
 /* Top rated movies block */
 .top-movies-box {
     text-align: center;
     margin-top: 60px;
 }
-
 h2 {
     margin-bottom: 20px;
 }
+
+
 
 /* Modal window */
 .modal {

@@ -25,6 +25,7 @@ async function generate_url() {
     await urlGrab(url_askBestCrime, array_topMoviesCrime);
     await urlGrab(url_askBestHorror, array_topMoviesHorror);
     await urlGrab(url_askBestWestern, array_topMoviesWestern);
+
 }
 
 // Push urls into given array
@@ -48,15 +49,10 @@ async function urlGrab(url, array) {
             }
         }
     }
-    console.log(array)
 }
 
 generate_url();
-/////////////////////////////////////////////////// TEST: START
-
-///
-
-/////////////////////////////////////////////////// TEST: START
+console.log(array_topMoviesOverall);
 
 // Modal window variables
 var modal = document.getElementById("myModal");
@@ -88,3 +84,30 @@ $(document).ready(function() {
         slidesToScroll: 1
     });
 });
+
+/////////////////////////////////////////////////// TEST: START
+
+/// Donc: 
+
+/// 1. Je doit trouver comment faire des requêtes à travers des urls.
+    /// Je veux mettre l'image du meilleur film overall
+    /// L'image se trouve: dans "array_topMoviesOverall", position 0, à "image_url"
+    /// ATTENTION: il s'agit d'un lien qui doit devenir la source, non pas d'une image.
+    /// Une fois targété*, je veux l'afficher sur le site.
+
+
+
+    
+/// 2. Ensuite, je doit récupérer les données
+    ///
+
+/// 3. Les afficher au bon endroit sur le site
+    ///
+
+/// 4. Faire les eventuelles changements nécéssaires en CSS
+    ///
+
+/// 5. Afficher les bonnes données au seins de la fenêtre modale.
+    /// 
+
+/////////////////////////////////////////////////// TEST: START
