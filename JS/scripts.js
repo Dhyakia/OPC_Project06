@@ -14,6 +14,9 @@ var array_topMoviesCrime = [];
 var array_topMoviesHorror = [];
 var array_topMoviesWestern = [];
 
+// Variable that set the number of movie per block
+const moviesPerBlock = 8;
+
 // Generate the urls
 async function generate_url() {
     let url_askBestMovies = (titleAPI_url + ask + sortByScoreAsc);
@@ -28,55 +31,58 @@ async function generate_url() {
 }
 
 // Push urls into given array
-async function urlGrab(url, array) {
+async function urlGrab(url, array){
     var response = await fetch(url);
     var data = await response.json();
 
-    // This var change the amount of movies fetch();
-    var howManyMovies = 10;
-
-    while (array.length < howManyMovies) {
+    while(array.length < moviesPerBlock){
         var resultsPerPage = 5;
-
-        while (resultsPerPage > 0) {
-            response = await fetch(data.next);
-            data = await response.json();
-
-            for (let x of data.results) {
-                array.push(x.url);
-                resultsPerPage --;
+        for(let x of data.results){
+            array.push(x.url);
+            resultsPerPage-- ;
+            if(resultsPerPage == 0){
+                response = await fetch(data.next);
+                data = await response.json();
             }
         }
     }
 }
 
-
 /////////////////////////////////////////////////// TEST: START
 
 // Good
+// Now that i understand how to get data and put it into the HTML ...
+// I need to find a way to do it for all 4 boxes.
+
+// i'll need 2 function:
+// 1. First one will take care of the top movie overall
+// 2. Second function will take a list range and set 
 async function getData(url) {
     let response = await fetch(url);
     let data = await response.json();
 
     api_img = data.image_url;
     api_title = data.title;
+    api_description = data.description;
 
-    var test_targetImg = document.getElementById("test_img");
-    var test_targetTitle = document.getElementById("test_para");
-    
-    test_targetImg.src = api_img;
-    test_targetTitle.innerHTML = data.title;
+    var imgTarget = document.getElementById("top-movie-img");
+    var titleTarget = document.getElementById("top-movie-title");
+    var descriptionTarget = document.getElementById("top-movie-description");
+
+    imgTarget.src = api_img;
+    titleTarget.innerHTML = api_title;
+    descriptionTarget.innerHTML = api_description;
 };
 
-/////////////////////////////////////////////////// TEST: START
+/////////////////////////////////////////////////// TEST: END
 
 
-
-// Because function are async - i'll need to wait AFTER using generate_url
-// to make use of the urls ---> usage of 'then' and 'catch' will be in order.
 generate_url()
     .then(res =>{
         getData(array_topMoviesOverall[0]);
+    })
+    .then(res =>{
+        // Function that takes a list and set image into the html
     })
 
 
