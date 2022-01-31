@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
         <link rel="stylesheet" type="text/css" href="css/slick.css"/>
         <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="extra/play-png-icon-4.jpg" />
     </head>
 
     <body>
@@ -28,36 +29,18 @@
             </nav>
         </header>
 
-        <!-- Test: START -->
-
-        <div class="test_div">
-            <p id="test_para"></p>
-            <img id="test_img" src="" alt="">
-        </div>
-
-        <!-- Test: END -->
-
-
         <!-- This div is for: Best movie of all time, by IMDB score -->
         <div class="top-movie-box">
 
-            <div class="top-movie-img">
-                <img class="moviePoster" src="https://picsum.photos/182/268" alt="movie_poster" onclick=modalTrigger()>
-            </div>
+            <img class="moviePoster" id="top-movie-img" alt="movie_poster" onclick=modalTrigger()>
 
             <div class="top-movie-infos">
                 <p id="top-movie-title">Titre de la vidéo</p>
                 <button id="top-movie-resume">Play</button>
             </div> 
 
-            <div id="top-movie-description">
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
-                    non proident, sunt in culpa qui officia deserunt mollit anim id 
-                    est laborum."</p>
+            <div>
+                <p id="top-movie-description"></p>
             </div>
         </div>
         
