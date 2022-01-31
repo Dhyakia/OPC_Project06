@@ -25,7 +25,6 @@ async function generate_url() {
     await urlGrab(url_askBestCrime, array_topMoviesCrime);
     await urlGrab(url_askBestHorror, array_topMoviesHorror);
     await urlGrab(url_askBestWestern, array_topMoviesWestern);
-
 }
 
 // Push urls into given array
@@ -51,8 +50,35 @@ async function urlGrab(url, array) {
     }
 }
 
-generate_url();
-console.log(array_topMoviesOverall);
+
+/////////////////////////////////////////////////// TEST: START
+
+// Good
+async function getData(url) {
+    let response = await fetch(url);
+    let data = await response.json();
+
+    api_img = data.image_url;
+    api_title = data.title;
+
+    var test_targetImg = document.getElementById("test_img");
+    var test_targetTitle = document.getElementById("test_para");
+    
+    test_targetImg.src = api_img;
+    test_targetTitle.innerHTML = data.title;
+};
+
+/////////////////////////////////////////////////// TEST: START
+
+
+
+// Because function are async - i'll need to wait AFTER using generate_url
+// to make use of the urls ---> usage of 'then' and 'catch' will be in order.
+generate_url()
+    .then(res =>{
+        getData(array_topMoviesOverall[0]);
+    })
+
 
 // Modal window variables
 var modal = document.getElementById("myModal");
@@ -84,30 +110,3 @@ $(document).ready(function() {
         slidesToScroll: 1
     });
 });
-
-/////////////////////////////////////////////////// TEST: START
-
-/// Donc: 
-
-/// 1. Je doit trouver comment faire des requêtes à travers des urls.
-    /// Je veux mettre l'image du meilleur film overall
-    /// L'image se trouve: dans "array_topMoviesOverall", position 0, à "image_url"
-    /// ATTENTION: il s'agit d'un lien qui doit devenir la source, non pas d'une image.
-    /// Une fois targété*, je veux l'afficher sur le site.
-
-
-
-    
-/// 2. Ensuite, je doit récupérer les données
-    ///
-
-/// 3. Les afficher au bon endroit sur le site
-    ///
-
-/// 4. Faire les eventuelles changements nécéssaires en CSS
-    ///
-
-/// 5. Afficher les bonnes données au seins de la fenêtre modale.
-    /// 
-
-/////////////////////////////////////////////////// TEST: START
