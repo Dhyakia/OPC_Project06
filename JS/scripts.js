@@ -71,16 +71,15 @@ async function bestMoviesCarousel(arrayofurls, category){
     for(let i = 0; i < moviesPerBlock; i++){
         let response = await fetch(arrayofurls[i]);
         let data = await response.json();
+        let api_img = data.image_url;
 
-        var api_img = data.image_url;
-
-        var childData = document.createElement("img");
+        let childData = document.createElement("img");
         childData.src = api_img;
         childData.alt = "movie_poster";
         childData.onclick = function() {modalTrigger()};
 
         if (category == "overall") {
-            var parentDiv = document.getElementById("best_movies_overall");
+            let parentDiv = document.getElementById("best_movies_overall");
             parentDiv.appendChild(childData);
             if(parentDiv.childElementCount == moviesPerBlock){
                 $(document).ready(function(){
@@ -94,7 +93,7 @@ async function bestMoviesCarousel(arrayofurls, category){
                 })
             }
         } else if (category == "crime") {
-            var parentDiv = document.getElementById("best_movies_crime");
+            let parentDiv = document.getElementById("best_movies_crime");
             parentDiv.appendChild(childData);
             if(parentDiv.childElementCount == moviesPerBlock){
                 $(document).ready(function(){
@@ -108,7 +107,7 @@ async function bestMoviesCarousel(arrayofurls, category){
                 })
             }
         } else if(category == "horror") {
-            var parentDiv = document.getElementById("best_movies_horror");
+            let parentDiv = document.getElementById("best_movies_horror");
             parentDiv.appendChild(childData);
             if(parentDiv.childElementCount == moviesPerBlock){
                 $(document).ready(function(){
@@ -123,7 +122,7 @@ async function bestMoviesCarousel(arrayofurls, category){
             }
 
         } else if(category == "western") {
-            var parentDiv = document.getElementById("best_movies_western");
+            let parentDiv = document.getElementById("best_movies_western");
             parentDiv.appendChild(childData);
             if(parentDiv.childElementCount == moviesPerBlock){
                 $(document).ready(function(){
@@ -140,21 +139,56 @@ async function bestMoviesCarousel(arrayofurls, category){
     }
 };
 
+/////////////////////////////////////////////////// TEST: START
+
+// Dernier objectif: afficher les données dans une fenêtre modale.
+    // 1. Créer une fonction qui prend un argument permettant de reconnaitre
+    // de quel image la modale s'ouvre.
+
+    // 2. L'argument permet d'identifier dans la liste, par sa pos ou autre,
+    // puis effectuer les calls sur l'url, et en extraire les informations.
+
+    // 3. Mettre la methode en .then après modalTrigger et prier trés fort
+    // que rien n'explose pendant l'évaluation.
+
+async function getDataModal(arg){
+    let response = await fetch(arg);
+    let data = await response.json();
+
+    api_img = data.image_url;                       // Text (url)
+    api_title = data.title;                         // Text
+    api_fullgenre = data.genres;                    // List w Text
+    api_releasedate = data.year;                    // Text
+    api_rating = data.avg_vote;                     // Num
+    api_imdbscore = data.imdb_score;                // Num
+    api_realisator = data.directors;                // List w Text
+    api_actors = data.actors;                       // List w Text
+    api_duration = data.duration;                   // Num (raw minutes)
+    api_country = data.countries;                   // Text
+//  api_BoxOffice = ;                               // ??? No idea yet
+    api_fulldescription = data.long_description;    // Text
+
+    let child_Img = document.createElement()
+    child_Img.src = api_img;
+
+    let parentDiv = document.getElementById("modalInfos");
+    parentDiv.appendChild(child_Img);    
+}
+
+/////////////////////////////////////////////////// TEST: END
+
+// 2 methods here :
+    // First method: takes an already existing <img> and replace the src=""
+    // Second method: document.createElement to create a brand new <img>
 generate_url()
     .then(res =>{
-        // .slice = from pos 1 to end
         bestMovieSetup(array_topMoviesOverall[0]);
+        // .slice = from pos 1 to end
         bestMoviesCarousel(array_topMoviesOverall.slice(1), "overall");
         bestMoviesCarousel(array_topMoviesCrime, "crime");
         bestMoviesCarousel(array_topMoviesHorror, "horror");
         bestMoviesCarousel(array_topMoviesWestern, "western");
     });
-
-/////////////////////////////////////////////////// TEST: START
-
-
-
-/////////////////////////////////////////////////// TEST: END
 
 // Modal window variables
 var modal = document.getElementById("myModal");
