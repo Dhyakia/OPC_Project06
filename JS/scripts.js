@@ -78,31 +78,67 @@ async function bestMoviesCarousel(arrayofurls, category){
         childData.src = api_img;
         childData.alt = "movie_poster";
         childData.onclick = function() {modalTrigger()};
-        childData.onmouseover = function() {api_title};
 
         if (category == "overall") {
             var parentDiv = document.getElementById("best_movies_overall");
             parentDiv.appendChild(childData);
+            if(parentDiv.childElementCount == moviesPerBlock){
+                $(document).ready(function(){
+                    $('#best_movies_overall').slick({
+                        lazyLoad: 'ondemand',
+                        arrows: true,
+                        infinite: true,
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                    })
+                })
+            }
         } else if (category == "crime") {
             var parentDiv = document.getElementById("best_movies_crime");
             parentDiv.appendChild(childData);
+            if(parentDiv.childElementCount == moviesPerBlock){
+                $(document).ready(function(){
+                    $('#best_movies_crime').slick({
+                        lazyLoad: 'ondemand',
+                        arrows: true,
+                        infinite: true,
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                    })
+                })
+            }
         } else if(category == "horror") {
             var parentDiv = document.getElementById("best_movies_horror");
             parentDiv.appendChild(childData);
+            if(parentDiv.childElementCount == moviesPerBlock){
+                $(document).ready(function(){
+                    $('#best_movies_horror').slick({
+                        lazyLoad: 'ondemand',
+                        arrows: true,
+                        infinite: true,
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                    })
+                })
+            }
+
         } else if(category == "western") {
             var parentDiv = document.getElementById("best_movies_western");
             parentDiv.appendChild(childData);
+            if(parentDiv.childElementCount == moviesPerBlock){
+                $(document).ready(function(){
+                    $('#best_movies_western').slick({
+                        lazyLoad: 'ondemand',
+                        arrows: true,
+                        infinite: true,
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                    })
+                })
+            }
         }
     }
 };
-
-/////////////////////////////////////////////////// TEST: START
-
-// Je doit modifier la façon dont j'applique .slick
-// L'appliquer une fois qu'une div comporte le même nombre que moviesPerBlock
-
-
-/////////////////////////////////////////////////// TEST: END
 
 generate_url()
     .then(res =>{
@@ -114,6 +150,12 @@ generate_url()
         bestMoviesCarousel(array_topMoviesWestern, "western");
     });
 
+/////////////////////////////////////////////////// TEST: START
+
+
+
+/////////////////////////////////////////////////// TEST: END
+
 // Modal window variables
 var modal = document.getElementById("myModal");
 var modalX = document.getElementById("closeModal");
@@ -121,28 +163,16 @@ var modalX = document.getElementById("closeModal");
 // Modal window trigger
 function modalTrigger() {
     modal.style.display = "block";
-}
+};
 
 // Modal window exit #1
 modalX.onclick = function() {
     modal.style.display = "none";
-}
+};
 
 // Modal window exit #2
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
-
-// Slick :[show 4, slide 1 by 1, with arrows & infinite loop]
-
-$(document).ready(function() {
-    $('.slick-slider').slick({
-        lazyLoad: 'ondemand',
-        arrows: true,
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1
-    });
-});
+};
