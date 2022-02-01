@@ -15,7 +15,7 @@ var array_topMoviesHorror = [];
 var array_topMoviesWestern = [];
 
 // Variable that set the number of movie per block
-const moviesPerBlock = 8;
+const moviesPerBlock = 7;
 
 // Generate the urls
 async function generate_url() {
@@ -48,16 +48,8 @@ async function urlGrab(url, array){
     }
 }
 
-/////////////////////////////////////////////////// TEST: START
-
-// Good
-// Now that i understand how to get data and put it into the HTML ...
-// I need to find a way to do it for all 4 boxes.
-
-// i'll need 2 function:
-// 1. First one will take care of the top movie overall
-// 2. Second function will take a list range and set 
-async function getData(url) {
+// Take a single url, fetch data and set [image+title+description] as the best movie overall
+async function bestMovieSetup(url) {
     let response = await fetch(url);
     let data = await response.json();
 
@@ -74,17 +66,53 @@ async function getData(url) {
     descriptionTarget.innerHTML = api_description;
 };
 
-/////////////////////////////////////////////////// TEST: END
+// Take an array of urls and category, and set the image into said category
+async function bestMoviesCarousel(arrayofurls, category){
+    for(let i = 0; i < moviesPerBlock; i++){
+        let response = await fetch(arrayofurls[i]);
+        let data = await response.json();
 
+        var api_img = data.image_url;
+
+        var childData = document.createElement("img");
+        childData.src = api_img;
+        childData.alt = "movie_poster";
+        childData.onclick = function() {modalTrigger()};
+        childData.onmouseover = function() {api_title};
+
+        if (category == "overall") {
+            var parentDiv = document.getElementById("best_movies_overall");
+            parentDiv.appendChild(childData);
+        } else if (category == "crime") {
+            var parentDiv = document.getElementById("best_movies_crime");
+            parentDiv.appendChild(childData);
+        } else if(category == "horror") {
+            var parentDiv = document.getElementById("best_movies_horror");
+            parentDiv.appendChild(childData);
+        } else if(category == "western") {
+            var parentDiv = document.getElementById("best_movies_western");
+            parentDiv.appendChild(childData);
+        }
+    }
+};
+
+/////////////////////////////////////////////////// TEST: START
+
+// Je doit modifier la façon dont j'applique .slick
+// L'appliquer une fois qu'une div comporte le même nombre que moviesPerBlock
+
+
+/////////////////////////////////////////////////// TEST: END
 
 generate_url()
     .then(res =>{
-        getData(array_topMoviesOverall[0]);
-    })
-    .then(res =>{
-        // Function that takes a list and set image into the html
-    })
-
+        // .slice = from pos 1 to end
+        bestMovieSetup(array_topMoviesOverall[0]);
+        bestMoviesCarousel(array_topMoviesOverall.slice(1), "overall");
+        bestMoviesCarousel(array_topMoviesCrime, "crime");
+        bestMoviesCarousel(array_topMoviesHorror, "horror");
+        bestMoviesCarousel(array_topMoviesWestern, "western");
+    });
 
 // Modal window variables
 var modal = document.getElementById("myModal");
@@ -108,8 +136,10 @@ window.onclick = function(event) {
 }
 
 // Slick :[show 4, slide 1 by 1, with arrows & infinite loop]
+
 $(document).ready(function() {
     $('.slick-slider').slick({
+        lazyLoad: 'ondemand',
         arrows: true,
         infinite: true,
         slidesToShow: 4,
