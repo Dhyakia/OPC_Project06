@@ -32,7 +32,7 @@
         <!-- This div is for: Best movie of all time, by IMDB score -->
         <div class="top-movie-box">
 
-            <img class="moviePoster" id="top-movie-img" alt="movie_poster" onclick=modalTrigger()>
+            <img class="moviePoster" id="top-movie-img" alt="movie_poster" onclick=modalTrigger(array_topMoviesOverall[0])>
 
             <div class="top-movie-infos">
                 <p id="top-movie-title">Titre de la vidéo</p>
@@ -75,8 +75,11 @@
         <!-- Modal Window -->
         <div id="myModal" class="modal">
             <!-- Modal content -->
-            <div class="modalContent" id="modalInfos">
+            <div class="modalContent">
                 <span id="closeModal">&times;</span>
+                <div id="modalInfos">
+                    <!-- Ajax request onclick show here, empty when close -->
+                </div>
             </div>
         </div>
 

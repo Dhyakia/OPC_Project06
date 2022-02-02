@@ -139,44 +139,6 @@ async function bestMoviesCarousel(arrayofurls, category){
     }
 };
 
-/////////////////////////////////////////////////// TEST: START
-
-// Dernier objectif: afficher les données dans une fenêtre modale.
-    // 1. Créer une fonction qui prend un argument permettant de reconnaitre
-    // de quel image la modale s'ouvre.
-
-    // 2. L'argument permet d'identifier dans la liste, par sa pos ou autre,
-    // puis effectuer les calls sur l'url, et en extraire les informations.
-
-    // 3. Mettre la methode en .then après modalTrigger et prier trés fort
-    // que rien n'explose pendant l'évaluation.
-
-async function getDataModal(arg){
-    let response = await fetch(arg);
-    let data = await response.json();
-
-    api_img = data.image_url;                       // Text (url)
-    api_title = data.title;                         // Text
-    api_fullgenre = data.genres;                    // List w Text
-    api_releasedate = data.year;                    // Text
-    api_rating = data.avg_vote;                     // Num
-    api_imdbscore = data.imdb_score;                // Num
-    api_realisator = data.directors;                // List w Text
-    api_actors = data.actors;                       // List w Text
-    api_duration = data.duration;                   // Num (raw minutes)
-    api_country = data.countries;                   // Text
-//  api_BoxOffice = ;                               // ??? No idea yet
-    api_fulldescription = data.long_description;    // Text
-
-    let child_Img = document.createElement()
-    child_Img.src = api_img;
-
-    let parentDiv = document.getElementById("modalInfos");
-    parentDiv.appendChild(child_Img);    
-}
-
-/////////////////////////////////////////////////// TEST: END
-
 // 2 methods here :
     // First method: takes an already existing <img> and replace the src=""
     // Second method: document.createElement to create a brand new <img>
@@ -194,19 +156,117 @@ generate_url()
 var modal = document.getElementById("myModal");
 var modalX = document.getElementById("closeModal");
 
+/////////////////////////////////////////////////// TEST: START
+
+// Dernier objectif: afficher les données dans une fenêtre modale:
+
+    // A. 
+
+    // B.  
+
+    // C. 
+
+    // D.  
+
+    // E.  
+
+/////////////////////////////////////////////////// TEST: END
+
+// Fetch data on said url and display it inside the modal window
+async function getModalData(url){
+    let response = await fetch(url);
+    let data = await response.json();
+
+    api_img = data.image_url;                       // Text (url)
+    api_title = data.title;                         // Text
+    api_genres = data.genres;                       // array w Text
+    api_releasedate = data.year;                    // Text
+    api_rating = data.avg_vote;                     // Num
+    api_imdbscore = data.imdb_score;                // Num
+    api_realisator = data.directors;                // array w Text
+    api_actors = data.actors;                       // array w Text
+    api_duration = data.duration;                   // Num (raw minutes)
+    api_country = data.countries;                   // Text
+    api_BoxOffice = "I DONT KNOW";                  // ??? No idea yet
+    api_longdescription = data.long_description;    // Text
+
+    let parentDiv = document.getElementById("modalInfos");
+
+    let child_Img = document.createElement("img");
+    child_Img.src = api_img;
+    parentDiv.appendChild(child_Img);  
+
+    let child_title = document.createElement("p");
+    child_title.innerHTML = "Titre: " + api_title;
+    parentDiv.appendChild(child_title);  
+
+    let child_genres = document.createElement("p");
+    child_genres.innerHTML = "Genres: " + api_genres;
+    parentDiv.appendChild(child_genres);
+    
+    let child_releasedate = document.createElement("p");
+    child_releasedate.innerHTML = "Date de sortie: " + data.year;
+    parentDiv.appendChild(child_releasedate);
+
+    let child_rating = document.createElement("p");
+    child_rating.innerHTML = "Score moyen: " + data.avg_vote;
+    parentDiv.appendChild(child_rating);
+
+    let child_imdbscore = document.createElement("p");
+    child_imdbscore.innerHTML = "Score imbd: " + data.imdb_score;
+    parentDiv.appendChild(child_imdbscore);
+
+    let child_realisator = document.createElement("p");
+    child_realisator.innerHTML = "Réalisateurs: " + data.directors;
+    parentDiv.appendChild(child_realisator);
+
+    let child_actors = document.createElement("p");
+    child_actors.innerHTML = "Acteurs: " + data.actors;
+    parentDiv.appendChild(child_actors);
+
+    let child_duration = document.createElement("p");
+    child_duration.innerHTML = "Durée en minutes: " + data.duration;
+    parentDiv.appendChild(child_duration);
+
+    let child_country = document.createElement("p");
+    child_country.innerHTML = "Pays d'origine: " + data.countries;
+    parentDiv.appendChild(child_country);
+
+    // ???
+    let child_BoxOffice = document.createElement("p");
+    child_BoxOffice.innerHTML = "Box Office: " + api_BoxOffice;
+    parentDiv.appendChild(child_BoxOffice);
+
+    let child_longdescription = document.createElement("p");
+    child_longdescription.innerHTML = "Description: " + data.long_description;
+    parentDiv.appendChild(child_longdescription);
+};
+
+// Loop that empty the modal window of all its content when closed. (remove childs)
+function removeModalData(){
+    const parentDiv = document.getElementById("modalInfos");
+    while(parentDiv.lastElementChild){
+        parentDiv.removeChild(parentDiv.lastElementChild);
+    }
+}
+
+
 // Modal window trigger
-function modalTrigger() {
+async function modalTrigger(url) {
     modal.style.display = "block";
+    getModalData(url);
 };
 
 // Modal window exit #1
 modalX.onclick = function() {
     modal.style.display = "none";
+    removeModalData();
 };
 
 // Modal window exit #2
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+        removeModalData();
     }
 };
