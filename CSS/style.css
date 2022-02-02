@@ -17,8 +17,6 @@ img:hover {
 
 
 
-
-
 /* Top banner */
 header {
     background-color: rgba(65, 74, 78, 0.815);
@@ -80,8 +78,6 @@ h1 {
     transform: scale(0.95);
     box-shadow: 2px 2px 22px 2px rgba(0,0,0,0.2);
 }
-
-/* Top movie description */
 #top-movie-description {
     margin-left: 24px;
     margin-right: 24px;
@@ -121,7 +117,9 @@ h2 {
     margin: 15% auto;
     padding: 20px;
 }
-/* Exit cross out of modal window */
+#modalInfos img{
+    text-align: center;
+}
 #closeModal {
     float: right;
     font-size: 24px;

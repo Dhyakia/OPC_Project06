@@ -1,3 +1,24 @@
+// Jquerry violation fixe (touchstart + touchmove)
+// "Marking event handler as passive to make page more responsive" -Chrome
+jQuery.event.special.touchstart = {
+    setup: function( _, ns, handle ){
+        if ( ns.includes("noPreventDefault") ) {
+            this.addEventListener("touchstart", handle, { passive: false });
+        } else {
+            this.addEventListener("touchstart", handle, { passive: true });
+        }
+    }
+};
+jQuery.event.special.touchmove = {
+    setup: function( _, ns, handle ){
+        if ( ns.includes("noPreventDefault") ) {
+            this.addEventListener("touchmove", handle, { passive: false });
+        } else {
+            this.addEventListener("touchmove", handle, { passive: true });
+        }
+    }
+};
+
 // API url
 const titleAPI_url = 'http://localhost:8000/api/v1/titles/';
 
@@ -32,8 +53,8 @@ async function generate_url() {
 
 // Push urls into given array
 async function urlGrab(url, array){
-    var response = await fetch(url);
-    var data = await response.json();
+    let response = await fetch(url);
+    let data = await response.json();
 
     while(array.length < moviesPerBlock){
         var resultsPerPage = 5;
@@ -53,15 +74,17 @@ async function bestMovieSetup(url) {
     let response = await fetch(url);
     let data = await response.json();
 
+    api_url = data.url;
     api_img = data.image_url;
     api_title = data.title;
     api_description = data.description;
 
-    var imgTarget = document.getElementById("top-movie-img");
-    var titleTarget = document.getElementById("top-movie-title");
-    var descriptionTarget = document.getElementById("top-movie-description");
+    let imgTarget = document.getElementById("top-movie-img");
+    let titleTarget = document.getElementById("top-movie-title");
+    let descriptionTarget = document.getElementById("top-movie-description");
 
     imgTarget.src = api_img;
+    imgTarget.title = api_url;
     titleTarget.innerHTML = api_title;
     descriptionTarget.innerHTML = api_description;
 };
@@ -71,12 +94,12 @@ async function bestMoviesCarousel(arrayofurls, category){
     for(let i = 0; i < moviesPerBlock; i++){
         let response = await fetch(arrayofurls[i]);
         let data = await response.json();
-        let api_img = data.image_url;
 
         let childData = document.createElement("img");
-        childData.src = api_img;
+        childData.src = data.image_url;
+        childData.title = data.url;
         childData.alt = "movie_poster";
-        childData.onclick = function() {modalTrigger()};
+        childData.onclick = function() {modalTrigger(this.title)};
 
         if (category == "overall") {
             let parentDiv = document.getElementById("best_movies_overall");
@@ -152,25 +175,7 @@ generate_url()
         bestMoviesCarousel(array_topMoviesWestern, "western");
     });
 
-// Modal window variables
-var modal = document.getElementById("myModal");
-var modalX = document.getElementById("closeModal");
 
-/////////////////////////////////////////////////// TEST: START
-
-// Dernier objectif: afficher les données dans une fenêtre modale:
-
-    // A. 
-
-    // B.  
-
-    // C. 
-
-    // D.  
-
-    // E.  
-
-/////////////////////////////////////////////////// TEST: END
 
 // Fetch data on said url and display it inside the modal window
 async function getModalData(url){
@@ -187,7 +192,7 @@ async function getModalData(url){
     api_actors = data.actors;                       // array w Text
     api_duration = data.duration;                   // Num (raw minutes)
     api_country = data.countries;                   // Text
-    api_BoxOffice = "I DONT KNOW";                  // ??? No idea yet
+    api_BoxOffice = data.usa_gross_income + data.worldwide_gross_income;  // Numbers
     api_longdescription = data.long_description;    // Text
 
     let parentDiv = document.getElementById("modalInfos");
@@ -232,9 +237,12 @@ async function getModalData(url){
     child_country.innerHTML = "Pays d'origine: " + data.countries;
     parentDiv.appendChild(child_country);
 
-    // ???
     let child_BoxOffice = document.createElement("p");
-    child_BoxOffice.innerHTML = "Box Office: " + api_BoxOffice;
+    if(api_BoxOffice == 0) {
+        child_BoxOffice.innerHTML = "Box Office: Not specified"
+    } else {
+        child_BoxOffice.innerHTML = "Box Office: " + api_BoxOffice + " USD";
+    }
     parentDiv.appendChild(child_BoxOffice);
 
     let child_longdescription = document.createElement("p");
@@ -242,7 +250,7 @@ async function getModalData(url){
     parentDiv.appendChild(child_longdescription);
 };
 
-// Loop that empty the modal window of all its content when closed. (remove childs)
+// Loop that empty the modal window of all its content when closed.
 function removeModalData(){
     const parentDiv = document.getElementById("modalInfos");
     while(parentDiv.lastElementChild){
@@ -250,6 +258,9 @@ function removeModalData(){
     }
 }
 
+// Modal window variables
+var modal = document.getElementById("myModal");
+var modalX = document.getElementById("closeModal");
 
 // Modal window trigger
 async function modalTrigger(url) {
@@ -257,13 +268,13 @@ async function modalTrigger(url) {
     getModalData(url);
 };
 
-// Modal window exit #1
-modalX.onclick = function() {
+// Modal window exit with the "X"
+modalX.onclick = function(){
     modal.style.display = "none";
     removeModalData();
 };
 
-// Modal window exit #2
+// Modal window exit by clicking out of the modal window
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
