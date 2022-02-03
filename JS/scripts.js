@@ -35,6 +35,7 @@ var array_topMoviesCrime = [];
 var array_topMoviesHorror = [];
 var array_topMoviesWestern = [];
 
+// BUG: Script crash if the const is set to multiple of 5 (result per page)
 // Variable that set the number of movie per block
 const moviesPerBlock = 7;
 
@@ -143,7 +144,6 @@ async function bestMoviesCarousel(arrayofurls, category){
                     })
                 })
             }
-
         } else if(category == "western") {
             let parentDiv = document.getElementById("best_movies_western");
             parentDiv.appendChild(childData);
@@ -250,7 +250,7 @@ async function getModalData(url){
     parentDiv.appendChild(child_longdescription);
 };
 
-// Loop that empty the modal window of all its content when closed.
+// Empty the modal window of all its content when closed.
 function removeModalData(){
     const parentDiv = document.getElementById("modalInfos");
     while(parentDiv.lastElementChild){
