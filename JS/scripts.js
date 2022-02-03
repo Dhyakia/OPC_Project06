@@ -20,7 +20,7 @@ jQuery.event.special.touchmove = {
 };
 
 // API url
-const titleAPI_url = 'http://localhost:8000/api/v1/titles/';
+const API_url = 'http://localhost:8000/api/v1/titles/';
 
 // API navigation
 const ask = '?';
@@ -40,7 +40,7 @@ const moviesPerBlock = 7;
 
 // Generate the urls
 async function generate_url() {
-    let url_askBestMovies = (titleAPI_url + ask + sortByScoreAsc);
+    let url_askBestMovies = (API_url + ask + sortByScoreAsc);
     let url_askBestCrime = (url_askBestMovies + sortByGenreCrime);
     let url_askBestHorror = (url_askBestMovies + sortByGenreHorror);
     let url_askBestWestern = (url_askBestMovies + sortByGenreWestern);
