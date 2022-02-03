@@ -49,15 +49,15 @@ async function generate_url() {
     await urlGrab(url_askBestCrime, array_topMoviesCrime);
     await urlGrab(url_askBestHorror, array_topMoviesHorror);
     await urlGrab(url_askBestWestern, array_topMoviesWestern);
-}
+};
 
 // Push urls into given array
 async function urlGrab(url, array){
     let response = await fetch(url);
     let data = await response.json();
+    let resultsPerPage = 5;
 
     while(array.length < moviesPerBlock){
-        var resultsPerPage = 5;
         for(let x of data.results){
             array.push(x.url);
             resultsPerPage-- ;
@@ -67,7 +67,7 @@ async function urlGrab(url, array){
             }
         }
     }
-}
+};
 
 // Take a single url, fetch data and set [image+title+description] as the best movie overall
 async function bestMovieSetup(url) {
@@ -255,7 +255,7 @@ function removeModalData(){
     while(parentDiv.lastElementChild){
         parentDiv.removeChild(parentDiv.lastElementChild);
     }
-}
+};
 
 // Modal window variables
 var modal = document.getElementById("myModal");
