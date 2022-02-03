@@ -35,7 +35,6 @@ var array_topMoviesCrime = [];
 var array_topMoviesHorror = [];
 var array_topMoviesWestern = [];
 
-// BUG: Script crash if the const is set to multiple of 5 (result per page)
 // Variable that set the number of movie per block
 const moviesPerBlock = 7;
 
