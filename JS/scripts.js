@@ -1,24 +1,3 @@
-// Jquerry violation fixe (touchstart + touchmove)
-// "Marking event handler as passive to make page more responsive" -Chrome
-jQuery.event.special.touchstart = {
-    setup: function( _, ns, handle ){
-        if ( ns.includes("noPreventDefault") ) {
-            this.addEventListener("touchstart", handle, { passive: false });
-        } else {
-            this.addEventListener("touchstart", handle, { passive: true });
-        }
-    }
-};
-jQuery.event.special.touchmove = {
-    setup: function( _, ns, handle ){
-        if ( ns.includes("noPreventDefault") ) {
-            this.addEventListener("touchmove", handle, { passive: false });
-        } else {
-            this.addEventListener("touchmove", handle, { passive: true });
-        }
-    }
-};
-
 // API url
 const API_url = 'http://localhost:8000/api/v1/titles/';
 
