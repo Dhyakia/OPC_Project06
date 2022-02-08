@@ -11,14 +11,14 @@ This web interface feature:
 * An image carousel
     * Now with infinite loop !
 
----
+
 ## Dependencies
 
 This interface makes use of Slick and Jquerry.
 
 Both module are already package within the depository.
 
----
+
 ## Usage
 
 First, get the code from any of theses method: 
